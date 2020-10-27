@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cursor sample</title>
+    <style>
+        /* reset styles */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            cursor: none;
+        }
+        .box.textBox {
+            margin-bottom: 20px;
+        }
+        .text {
+            font-size: 20px;
+            color: #eee;
+        }
+        .text.center {
+            text-align: center;
+        }
+        .box.container {
+            height: 100vh;
+            background: #333;
+        }
+        .box.cursor {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: matrix(1, 0, 0, 1, 0, 0);
+            transition: ease-in-out;
+            opacity: 0.6;
+            mix-blend-mode: exclusion;
+        }
+        .box.cursor::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="box container">
+        <div class="box textBox">
+            <p class="text">sample text...</p>
+        </div>
+        <div class="box textBox">
+            <p class="text center">sample text...</p>
+        </div>
+        <div class="box textBox">
+            <p class="text">sample text...</p>
+        </div>
+        <div class="box textBox">
+            <p class="text center">sample text...</p>
+        </div>
+        <div class="box textBox">
+            <p class="text">sample text...</p>
+        </div>
+    </div>
+    <div class="box cursor"></div>
+
+    <script>
+
+        const cursorElement = document.querySelector('.cursor');
+        window.addEventListener('mousemove', (event) => {
+            cursorElement.style.transform = `matrix(1, 0, 0, 1, ${event.clientX}, ${event.clientY}`
+        })
+    </script>
+</body>
+</html>
